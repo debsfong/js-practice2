@@ -48,7 +48,6 @@ class Clock {
       // 2. Call printTime.
   }
 
-
 }
 
 // const clock = new Clock();
