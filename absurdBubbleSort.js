@@ -23,10 +23,9 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
       arr[i+1] = arr[i];
       arr[i] = temp;
       console.log(arr);
-      return innerBubbleSortLoop(arr, i+1, true, outerBubbleSortLoop);
-    } else {
-      return innerBubbleSortLoop(arr, i+1, false, outerBubbleSortLoop);
+      madeAnySwaps = true;
     }
+    return innerBubbleSortLoop(arr, i+1, madeAnySwaps, outerBubbleSortLoop);
   }
   if (i === arr.length - 1) {
     outerBubbleSortLoop(madeAnySwaps);
@@ -39,7 +38,7 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
 function absurdBubbleSort(arr, sortCompletionCallback) {
   function outerBubbleSortLoop(madeAnySwaps) {
     if (madeAnySwaps) {
-      return innerBubbleSortLoop(arr, 0, madeAnySwaps, outerBubbleSortLoop);
+      return innerBubbleSortLoop(arr, 0, false, outerBubbleSortLoop);
     } else {
       return sortCompletionCallback(arr);
     }
@@ -47,7 +46,7 @@ function absurdBubbleSort(arr, sortCompletionCallback) {
   outerBubbleSortLoop(true);
 }
 
-absurdBubbleSort([3, 2, 1], function (arr) {
+absurdBubbleSort([3, 2, 1, 4], function (arr) {
   console.log("Sorted array: " + JSON.stringify(arr));
   reader.close();
 });
